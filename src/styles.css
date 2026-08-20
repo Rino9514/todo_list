@@ -10,3 +10,167 @@
   padding: 0;
   border: 0;
 }
+
+/* Couleurs des priorités, centralisées ici pour être réutilisées partout. */
+:root {
+  --couleur-basse: #4caf50;
+  --couleur-moyenne: #ff9800;
+  --couleur-haute: #f44336;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  color: #222;
+}
+
+header {
+  padding: 1rem;
+  background-color: #263238;
+  color: white;
+}
+
+/* --- Mise en page générale : sidebar + zone principale --- */
+
+#content {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+#sidebar {
+  width: 220px;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+}
+
+#zone-todos {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* --- Listes de projets et de todos --- */
+
+#liste-projets,
+#liste-todos {
+  list-style: none;
+  margin: 0.5rem 0 1rem;
+}
+
+#liste-projets li,
+#liste-todos li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#liste-projets li:hover,
+#liste-todos li:hover {
+  background-color: #eee;
+}
+
+#liste-projets li.actif {
+  background-color: #cfd8dc;
+  font-weight: bold;
+}
+
+#liste-projets li span:first-child,
+#liste-todos li span {
+  flex: 1;
+}
+
+.date-echeance {
+  font-size: 0.85rem;
+  color: #666;
+  flex: 0 0 auto !important;
+}
+
+/* Pastille indiquant la priorité d'un todo. */
+.pastille-priorite {
+  flex: 0 0 auto !important;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.priorite-basse {
+  background-color: var(--couleur-basse);
+}
+
+.priorite-moyenne {
+  background-color: var(--couleur-moyenne);
+}
+
+.priorite-haute {
+  background-color: var(--couleur-haute);
+}
+
+/* Boutons de suppression, discrets sauf au survol. */
+[data-action="supprimer-projet"],
+[data-action="supprimer-todo"] {
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #999;
+  padding: 0 0.4rem;
+}
+
+[data-action="supprimer-projet"]:hover,
+[data-action="supprimer-todo"]:hover {
+  color: var(--couleur-haute);
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  background-color: #263238;
+  color: white;
+}
+
+/* --- Boîtes de dialogue (formulaires de création/édition) --- */
+
+dialog {
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-width: 320px;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+dialog label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+dialog input,
+dialog textarea,
+dialog select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions-dialog {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+#btn-annuler-todo,
+#btn-annuler-projet {
+  background-color: #999;
+}
