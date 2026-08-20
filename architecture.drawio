@@ -1,0 +1,49 @@
+<mxfile host="65bd71144e">
+    <diagram id="todo-list-architecture" name="Architecture">
+        <mxGraphModel dx="2053" dy="867" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="idx" value="&lt;b&gt;index.js&lt;/b&gt;&lt;br&gt;(point d&#39;entree)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="20" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dom" value="&lt;b&gt;dom.js&lt;/b&gt; — rendu + evenements&lt;br&gt;&lt;br&gt;&lt;u&gt;Exporte :&lt;/u&gt;&lt;br&gt;• initialiserUI()&lt;br&gt;&lt;br&gt;&lt;u&gt;Prive (non exporte) :&lt;/u&gt;&lt;br&gt;• afficherProjets()&lt;br&gt;• afficherTodos()&lt;br&gt;• gererClicListeProjets(event)&lt;br&gt;• gererClicListeTodos(event)&lt;br&gt;• gererSoumissionProjet(event)&lt;br&gt;• gererSoumissionTodo(event)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="-190" y="200" width="380" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="app" value="&lt;b&gt;app.js&lt;/b&gt; — etat + API publique&lt;br&gt;&lt;br&gt;• initialiserApp()&lt;br&gt;• getProjets() : Project[]&lt;br&gt;• getProjetActif() : Project&lt;br&gt;• selectionnerProjet(id: string)&lt;br&gt;• creerProjet(nom: string) : Project&lt;br&gt;• supprimerProjet(id: string)&lt;br&gt;• creerTodo(projetId, titre, description,&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;dateEcheance, priorite) : Todo&lt;br&gt;• supprimerTodo(projetId, todoId)&lt;br&gt;• modifierTodo(projetId, todoId, donnees) : void" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="140" width="460" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="todo" value="&lt;b&gt;todo.js&lt;/b&gt;&lt;br&gt;&lt;br&gt;• createTodo(titre: string,&lt;br&gt;&amp;nbsp;&amp;nbsp;description: string,&lt;br&gt;&amp;nbsp;&amp;nbsp;dateEcheance: string,&lt;br&gt;&amp;nbsp;&amp;nbsp;priorite: string) : Todo&lt;br&gt;&lt;br&gt;&lt;i&gt;Todo&lt;/i&gt; = &amp;#123; id, titre, description,&lt;br&gt;&amp;nbsp;&amp;nbsp;dateEcheance, priorite, terminee &amp;#125;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="520" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="project" value="&lt;b&gt;project.js&lt;/b&gt;&lt;br&gt;&lt;br&gt;• createProject(nom: string) : Project&lt;br&gt;&lt;br&gt;&lt;i&gt;Project&lt;/i&gt; = &amp;#123; id, nom, todos: Todo[] &amp;#125;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="850" y="520" width="260" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="storage" value="&lt;b&gt;storage.js&lt;/b&gt;&lt;br&gt;&lt;br&gt;• sauvegarderProjets(projets: Project[]) : void&lt;br&gt;&amp;nbsp;&amp;nbsp;→ ecrit dans localStorage (JSON.stringify)&lt;br&gt;&lt;br&gt;• chargerProjets() : Project[] | null&lt;br&gt;&amp;nbsp;&amp;nbsp;→ lit depuis localStorage (JSON.parse)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1140" y="520" width="300" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="initialiserUI()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="idx" target="dom" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="initialiserApp()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="idx" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="appelle les fonctions ci-contre&lt;br&gt;echange : id (string), objets Todo / Project" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="dom" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="createTodo(titre, description,&lt;br&gt;dateEcheance, priorite) : Todo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="app" target="todo" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="createProject(nom) : Project" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="app" target="project" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="sauvegarderProjets(Project[])&lt;br&gt;chargerProjets() : Project[] | null" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" parent="1" source="app" target="storage" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="Regle : dom.js n&#39;appelle jamais localStorage directement — seulement les fonctions publiques de app.js.&lt;br&gt;Les identifiants (id) sont des strings generees par crypto.randomUUID(). Les priorites possibles sont « basse » | « moyenne » | « haute »." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;fontStyle=2;align=left;verticalAlign=middle;spacingLeft=8;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="740" width="1320" height="70" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
